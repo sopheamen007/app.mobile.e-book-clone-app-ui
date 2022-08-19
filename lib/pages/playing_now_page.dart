@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class PlayingNowPage extends StatefulWidget {
-  const PlayingNowPage({Key? key}) : super(key: key);
+  final String img;
+  final String title;
+  final String subTitle;
+  const PlayingNowPage({Key? key,required this.img,required this.title,required this.subTitle}) : super(key: key);
 
   @override
   State<PlayingNowPage> createState() => _PlayingNowPageState();
@@ -66,7 +69,7 @@ class _PlayingNowPageState extends State<PlayingNowPage> {
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage(
-                        "https://covers.openlibrary.org/b/id/12539702-M.jpg"),
+                        widget.img),
                     fit: BoxFit.cover),
                 boxShadow: [
                   BoxShadow(
@@ -81,14 +84,14 @@ class _PlayingNowPageState extends State<PlayingNowPage> {
             height: 30,
           ),
           Text(
-            "Atomic Habits",
+            widget.title,
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 8,
           ),
           Text(
-            "F.Scott Fitzgerald",
+            widget.subTitle,
             style: TextStyle(
                 fontSize: 16,
                 color: black.withOpacity(0.6),

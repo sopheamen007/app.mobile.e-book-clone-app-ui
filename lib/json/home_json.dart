@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 const List tags = [
   {
     "label" : "Education",
-    "color" : blue
+    "color" : Color(0xFF7871aa)
   },
   {
     "label" : "Self-development",
-    "color" : green
+    "color" : Color(0xFF7fb069)
   },
   {
     "label" : "Psychology",
-    "color" : pink
+    "color" : Color(0xFFcc7e85)
   }
 
 ];
@@ -20,31 +20,31 @@ const List tags = [
 const List storeTags = [
   {
     "label" : "Education",
-    "color" : blue
+    "color" : Color(0xFF7871aa)
   },
   {
     "label" : "Self-development",
-    "color" : green
+    "color" : Color(0xFF7fb069)
   },
   {
     "label" : "Psychology",
-    "color" : pink
+    "color" : Color(0xFFcc7e85)
   },
   {
     "label" : "Fantasy",
-    "color" : Colors.orange
+    "color" : Color(0xFF76818e)
   },
   {
     "label" : "Adventures",
-    "color" : Colors.purple
+    "color" : Color(0xFFcf4d6f)
   },
   {
     "label" : "Science-fiction",
-    "color" : Colors.teal
+    "color" : Color(0xFFc86fc9)
   },
   {
     "label" : "Detectives",
-    "color" : Colors.red
+    "color" : Color(0xFF8f8073)
   }
 
 ];
