@@ -230,10 +230,12 @@ class _HomePageState extends State<HomePage> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: List.generate(10, (index) {
+            children: List.generate(specialForYouJson.length, (index) {
               return GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => BookDetailPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => BookDetailPage(
+                    img: specialForYouJson[index]['img'],
+                  )));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 15),
@@ -248,7 +250,7 @@ class _HomePageState extends State<HomePage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        "https://covers.openlibrary.org/b/id/12539702-M.jpg"),
+                                        specialForYouJson[index]['img']),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(12)),
                           ),
@@ -268,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                               decoration: BoxDecoration(
                                   color: white, shape: BoxShape.circle),
                               child: Icon(
-                                LineIcons.heartAlt,
+                                specialForYouJson[index]['favourite'] ? LineIcons.heartAlt : LineIcons.heart,
                                 size: 20,
                                 color: danger,
                               ),
@@ -286,7 +288,7 @@ class _HomePageState extends State<HomePage> {
                                       bottomRight: Radius.circular(12))),
                               child: Center(
                                 child: Text(
-                                  "\$ 5.00",
+                                  "\$ "+specialForYouJson[index]['price'],
                                   style: TextStyle(
                                       fontSize: 14,
                                       color: white,
@@ -300,18 +302,27 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        "Atomic Habits",
-                        style:
-                            TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          specialForYouJson[index]['title'],
+                          maxLines: 1,
+                          style:
+                              TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                        ),
                       ),
                       SizedBox(
                         height: 5,
                       ),
-                      Text(
-                        "J.K Rowling",
-                        style: TextStyle(
-                            fontSize: 13, color: black.withOpacity(0.4)),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          
+                          specialForYouJson[index]['sub_title'],
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontSize: 13, color: black.withOpacity(0.4)),
+                        ),
                       ),
                       SizedBox(
                         height: 6,
@@ -323,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             RatingBar.builder(
                               ignoreGestures: true,
-                              initialRating: 3,
+                              initialRating: specialForYouJson[index]['rate'],
                               minRating: 1,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
@@ -339,7 +350,7 @@ class _HomePageState extends State<HomePage> {
                               },
                             ),
                             Text(
-                              "(4.1)",
+                              "(${specialForYouJson[index]['rate']})",
                               style: TextStyle(
                                   color: danger,
                                   fontSize: 13,

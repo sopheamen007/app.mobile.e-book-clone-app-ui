@@ -10,7 +10,8 @@ import 'package:line_icons/line_icons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class BookDetailPage extends StatefulWidget {
-  const BookDetailPage({Key? key}) : super(key: key);
+  final String img;
+  const BookDetailPage({Key? key,required this.img}) : super(key: key);
 
   @override
   State<BookDetailPage> createState() => _BookDetailPageState();
@@ -40,7 +41,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage(
-                        "https://covers.openlibrary.org/b/id/12539702-M.jpg"),
+                        widget.img),
                     fit: BoxFit.cover)),
           ),
           Container(
@@ -467,8 +468,8 @@ class _BookDetailPageState extends State<BookDetailPage> {
             children: List.generate(10, (index) {
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => BookDetailPage()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (_) => BookDetailPage()));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 15),
