@@ -11,7 +11,14 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class BookDetailPage extends StatefulWidget {
   final String img;
-  const BookDetailPage({Key? key,required this.img}) : super(key: key);
+  final String title;
+  final String subTitle;
+  final String price;
+  final String page;
+  final String rate;
+  final String authorName;
+
+  const BookDetailPage({Key? key,required this.img,required this.title,required this.subTitle,required this.price,required this.page,required this.rate,required this.authorName}) : super(key: key);
 
   @override
   State<BookDetailPage> createState() => _BookDetailPageState();
@@ -118,7 +125,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Atomic Habits",
+                              widget.title,
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -128,7 +135,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                               height: 8,
                             ),
                             Text(
-                              "J.K Rowling",
+                              widget.subTitle,
                               style: TextStyle(fontSize: 16, color: white),
                             ),
                           ],
@@ -182,7 +189,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
         Column(
           children: [
             Text(
-              "5.0\$",
+              "${widget.price}\$",
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
             ),
             SizedBox(
@@ -197,7 +204,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
         Column(
           children: [
             Text(
-              "365",
+              widget.page,
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
             ),
             SizedBox(
@@ -212,7 +219,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
         Column(
           children: [
             Text(
-              "4.8",
+              widget.rate,
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
             ),
             SizedBox(
@@ -243,7 +250,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
           textAlign: TextAlign.left,
           text: TextSpan(
             text:
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum...",
+                "She returns to town in the hopes of regaining custody of her and Scotty's daughter who is being raised by Scotty's parents, the Landrys. However, the Landrys are still angry and heartbroken over the loss of their son. Meanwhile, Kenna ends up meeting Ledger, Scotty's best friend, who has been helping to raise her daughter. In this emotional novel about redemption and forgiveness, Kenna must find a way to made amends and figure out what her life will look like moving forward.",
             style: TextStyle(
                 fontSize: 15,
                 height: 1.5,
@@ -293,7 +300,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                 children: [
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                      "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+                      "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
                     ),
                   ),
                   SizedBox(
@@ -303,7 +310,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "F.Scott Fitzgerald",
+                        widget.authorName,
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 15),
                       ),
@@ -353,7 +360,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
           height: 15,
         ),
         Column(
-          children: List.generate(2, (index) {
+          children: List.generate(reviewsPeople.length, (index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: Column(
@@ -362,7 +369,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                     children: [
                       CircleAvatar(
                         backgroundImage: NetworkImage(
-                          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+                          reviewsPeople[index]['img']
                         ),
                       ),
                       SizedBox(
@@ -372,7 +379,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Miranda",
+                            reviewsPeople[index]['name'],
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 15),
                           ),
@@ -381,7 +388,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                           ),
                           RatingBar.builder(
                             ignoreGestures: true,
-                            initialRating: 3,
+                            initialRating: reviewsPeople[index]['rate'],
                             minRating: 1,
                             direction: Axis.horizontal,
                             allowHalfRating: true,
@@ -407,7 +414,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                     textAlign: TextAlign.left,
                     text: TextSpan(
                       text:
-                          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
+                          reviewsPeople[index]['text'],
                       style: TextStyle(
                           fontSize: 15,
                           height: 1.5,
@@ -465,11 +472,18 @@ class _BookDetailPageState extends State<BookDetailPage> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            children: List.generate(10, (index) {
+            children: List.generate(similarBooksJson.length, (index) {
               return GestureDetector(
                 onTap: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (_) => BookDetailPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => BookDetailPage(
+                    img: similarBooksJson[index]['img'],
+                    title: similarBooksJson[index]['title'],
+                    subTitle: similarBooksJson[index]['sub_title'],
+                    price: similarBooksJson[index]['price'].toString(),
+                    page: similarBooksJson[index]['page'],
+                    authorName: similarBooksJson[index]['author_name'],
+                    rate: similarBooksJson[index]['rate'].toString(),
+                  )));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 15),
@@ -484,7 +498,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        "https://covers.openlibrary.org/b/id/12539702-M.jpg"),
+                                        similarBooksJson[index]['img']),
                                     fit: BoxFit.cover),
                                 borderRadius: BorderRadius.circular(12)),
                           ),
@@ -504,7 +518,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                               decoration: BoxDecoration(
                                   color: white, shape: BoxShape.circle),
                               child: Icon(
-                                LineIcons.heartAlt,
+                                similarBooksJson[index]['favourite'] ?  LineIcons.heartAlt : LineIcons.heart,
                                 size: 20,
                                 color: danger,
                               ),
@@ -522,7 +536,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                                       bottomRight: Radius.circular(12))),
                               child: Center(
                                 child: Text(
-                                  "\$ 5.00",
+                                  "\$ ${similarBooksJson[index]['price']}",
                                   style: TextStyle(
                                       fontSize: 14,
                                       color: white,
@@ -536,18 +550,26 @@ class _BookDetailPageState extends State<BookDetailPage> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        "Atomic Habits",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          similarBooksJson[index]['title'],
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w600),
+                        ),
                       ),
                       SizedBox(
                         height: 5,
                       ),
-                      Text(
-                        "J.K Rowling",
-                        style: TextStyle(
-                            fontSize: 13, color: black.withOpacity(0.4)),
+                      Container(
+                        width: 120,
+                        child: Text(
+                          similarBooksJson[index]['sub_title'],
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontSize: 13, color: black.withOpacity(0.4)),
+                        ),
                       ),
                       SizedBox(
                         height: 6,
@@ -559,7 +581,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                           children: [
                             RatingBar.builder(
                               ignoreGestures: true,
-                              initialRating: 3,
+                              initialRating: similarBooksJson[index]['rate'],
                               minRating: 1,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
@@ -575,7 +597,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                               },
                             ),
                             Text(
-                              "(4.1)",
+                              "(${similarBooksJson[index]['rate']})",
                               style: TextStyle(
                                   color: danger,
                                   fontSize: 13,

@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             Text(
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+              "I'd rather have roses on my table than diamonds on my neck.",
               style: TextStyle(
                   fontSize: 15, height: 1.5, fontWeight: FontWeight.w500),
             ),
@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
             Align(
               alignment: Alignment.centerRight,
               child: Text(
-                "0. Wild",
+                "Emma Goldman",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ),
@@ -235,6 +235,12 @@ class _HomePageState extends State<HomePage> {
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (_) => BookDetailPage(
                     img: specialForYouJson[index]['img'],
+                    title: specialForYouJson[index]['title'],
+                    subTitle: specialForYouJson[index]['sub_title'],
+                    price: specialForYouJson[index]['price'].toString(),
+                    page: specialForYouJson[index]['page'],
+                    authorName: specialForYouJson[index]['author_name'],
+                    rate: specialForYouJson[index]['rate'].toString(),
                   )));
                 },
                 child: Padding(
