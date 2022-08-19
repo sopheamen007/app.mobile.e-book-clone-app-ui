@@ -43,6 +43,7 @@ dependencies:
   badges:
   flutter_rating_bar: ^4.0.1
   flutter_icons: ^1.1.0
+  modal_bottom_sheet: 
 
 dev_dependencies:
   flutter_test:

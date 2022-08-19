@@ -42,9 +42,9 @@ class _PlayingNowPageState extends State<PlayingNowPage> {
               Navigator.pop(context);
             },
             icon: Icon(
-              Icons.bookmark,
+              Icons.more_horiz,
               color: black,
-              size: 22,
+              size: 30,
             )),
       ],
       title: Text(
@@ -129,7 +129,6 @@ class _PlayingNowPageState extends State<PlayingNowPage> {
               ),
             ],
           ),
-         
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -150,7 +149,7 @@ class _PlayingNowPageState extends State<PlayingNowPage> {
                         BoxDecoration(shape: BoxShape.circle, color: primary),
                     child: Center(
                       child: Icon(
-                        Feather.play,
+                        Icons.play_arrow,
                         size: 30,
                         color: white,
                       ),
